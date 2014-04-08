@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "gulp-concat": "~2.1.7",
+    "gulp-strip-debug": "~0.2.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-sass": "~0.7.1",
+    "gulp-jasmine": "~0.1.4",
+    "gulp-browserify": "~0.4.6",
+    "socket.io-client": "~0.9.16",
+    "hyperquest": "^0.3.0"
+  }
+}
