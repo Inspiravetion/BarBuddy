@@ -82,21 +82,76 @@ MenuView.prototype.addDrink = function(){
     row.append($('<td/>', {
       text: inputArr[i].value
     }));
+    inputArr[i].value = '';
   }
 
   row.append($('<td/>').append($('<button/>', {
     class: 'btn btn-default',
     text: 'Edit',
     click: function(){
-      this.editRow();
+      this.editRow(row);
     }.bind(this)
   })));
 
   row.insertBefore(this._tableBody.children().last());
 }
 
-MenuView.prototype.editRow = function() {
+MenuView.prototype.editRow = function(row) {
+  var newRow, children;
 
+  newRow = [];
+  children = row.find('td');
+
+  for(var i = 0; i < children.length - 1; i++){
+    newRow.push($('<td/>')
+      .append($('<input/>', {
+        type: 'text',
+        placeholder: children[i].innerText
+      })));
+  }
+
+  newRow.push($('<td/>').append($('<button/>', {
+    class: 'btn btn-primary',
+    text: 'Done',
+    click: function(){
+      this.doneEditing(row);
+    }.bind(this)
+  })));
+
+  row.empty()
+
+  newRow.forEach(function(elem){
+    row.append(elem);
+  });
+}
+
+MenuView.prototype.doneEditing = function(row){
+  var newRow, children;
+
+  newRow = [];
+  children = row.find('input');
+
+  for(var i = 0; i < children.length; i++){
+    newRow.push($('<td/>', {
+      text: children[i].value || children[i].placeholder
+    }));
+  }
+
+  console.log(newRow);
+
+  newRow.push($('<td/>').append($('<button/>', {
+    class: 'btn btn-default',
+    text: 'Edit',
+    click: function(){
+      this.editRow(row);
+    }.bind(this)
+  })));
+
+  row.empty()
+
+  newRow.forEach(function(elem){
+    row.append(elem);
+  });
 }
 
 window.onload = function(){
