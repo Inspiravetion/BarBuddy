@@ -45,7 +45,7 @@ gulp.task('default', function(){
 
     //JS Compilation
     gulp.watch('./dev/scripts/*.js', ['scripts', 'tests']);
-
+    gulp.watch('./node_modules/*/*.js', ['scripts', 'tests']);
     //CSS Compilation
     gulp.watch('./dev/styles/*.scss', ['styles']);
 

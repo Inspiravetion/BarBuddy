@@ -1,3 +1,5 @@
+var API = require('api');
+
 var MenuView = function(){
   var inputContainer, header, body;
 
@@ -40,11 +42,11 @@ MenuView.prototype.body = function(){
 MenuView.prototype.tableHead = function(){
   var head = $('<thead/>')
     .append($('<tr/>')
-      .append($('<th/>', { text: 'Drink'}))
-      .append($('<th/>', { text: 'Price'}))
-      .append($('<th/>', { text: 'Alcohol Content(%)'}))
-      .append($('<th/>', { text: 'Size(oz)'}))
-      .append($('<th/>')))[0];
+      .append(this.th('Drink'))
+      .append(this.th('Price'))
+      .append(this.th('Alcohol Content(%)'))
+      .append(this.th('Size(oz)'))
+      .append(this.th()))[0];
 
   return head;
 }
@@ -52,22 +54,11 @@ MenuView.prototype.tableHead = function(){
 MenuView.prototype.tableBody = function(){
   this._tableBody = $('<tbody/>')
     .append($('<tr/>')
-      .append($('<td/>')
-        .append($('<input/>', { type: 'text'})))
-      .append($('<td/>')
-        .append($('<input/>', { type: 'text'})))
-      .append($('<td/>')
-        .append($('<input/>', { type: 'text'})))
-      .append($('<td/>')
-        .append($('<input/>', { type: 'text'})))
-      .append($('<td/>')
-        .append($('<button/>', {
-          class: 'btn btn-primary',
-          text: 'Add Drink',
-          click: function(){
-            this.addDrink();
-          }.bind(this)
-        }))));
+      .append(this.td(this.textBox))
+      .append(this.td(this.textBox))
+      .append(this.td(this.textBox))
+      .append(this.td(this.textBox))
+      .append(this.td(this.addDrinkButton)));
 
   return this._tableBody[0];
 }
@@ -79,19 +70,13 @@ MenuView.prototype.addDrink = function(){
   inputArr = this._tableBody.find('input');
 
   for(var i = 0; i < inputArr.length; i++){
-    row.append($('<td/>', {
+    row.append(this.td({
       text: inputArr[i].value
     }));
     inputArr[i].value = '';
   }
 
-  row.append($('<td/>').append($('<button/>', {
-    class: 'btn btn-default',
-    text: 'Edit',
-    click: function(){
-      this.editRow(row);
-    }.bind(this)
-  })));
+  row.append(this.td(this.editButton, [row]));
 
   row.insertBefore(this._tableBody.children().last());
 }
@@ -103,20 +88,10 @@ MenuView.prototype.editRow = function(row) {
   children = row.find('td');
 
   for(var i = 0; i < children.length - 1; i++){
-    newRow.push($('<td/>')
-      .append($('<input/>', {
-        type: 'text',
-        placeholder: children[i].innerText
-      })));
+    newRow.push(this.td(this.textBox, [children[i].innerText]));
   }
 
-  newRow.push($('<td/>').append($('<button/>', {
-    class: 'btn btn-primary',
-    text: 'Done',
-    click: function(){
-      this.doneEditing(row);
-    }.bind(this)
-  })));
+  newRow.push(this.td(this.doneButton, [row]));
 
   row.empty()
 
@@ -132,25 +107,70 @@ MenuView.prototype.doneEditing = function(row){
   children = row.find('input');
 
   for(var i = 0; i < children.length; i++){
-    newRow.push($('<td/>', {
-      text: children[i].value || children[i].placeholder
+    newRow.push(this.td({
+      text: children[i].value
     }));
   }
 
-  console.log(newRow);
-
-  newRow.push($('<td/>').append($('<button/>', {
-    class: 'btn btn-default',
-    text: 'Edit',
-    click: function(){
-      this.editRow(row);
-    }.bind(this)
-  })));
+  newRow.push(this.td(this.editButton, [row]));
 
   row.empty()
 
   newRow.forEach(function(elem){
     row.append(elem);
+  });
+}
+
+MenuView.prototype.editButton = function(row){
+  return $('<button/>', {
+    class: 'btn btn-default',
+    text: 'Edit',
+    click: function(){
+      this.editRow(row);
+    }.bind(this)
+  });
+}
+
+MenuView.prototype.addDrinkButton = function() {
+  return $('<button/>', {
+    class: 'btn btn-primary',
+    text: 'Add Drink',
+    click: function(){
+      this.addDrink();
+    }.bind(this)
+  });
+}
+
+MenuView.prototype.doneButton = function(row) {
+  return $('<button/>', {
+    class: 'btn btn-primary',
+    text: 'Done',
+    click: function(){
+      this.doneEditing(row);
+    }.bind(this)
+  });
+}
+
+MenuView.prototype.th = function(label) {
+  return $('<th/>', { text: label || '' });
+}
+
+MenuView.prototype.td = function(child, args){
+  if(!child){
+    return $('<td/>');
+  }
+
+  if(typeof child == 'function'){
+    return $('<td/>').append(child.apply(this, args));
+  } else if(typeof child == 'object'){
+    return $('<td/>', child);
+  }
+}
+
+MenuView.prototype.textBox = function(hint) {
+  return $('<input/>', {
+    type: 'text',
+    value: hint || ''
   });
 }
 
