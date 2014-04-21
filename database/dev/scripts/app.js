@@ -1,14 +1,15 @@
 var API = require('api');
+var Drink = require('schema').Drink;
+var Bar = require('schema').Bar;
 
-var MenuView = function(){
-  var inputContainer, header, body;
+var MenuView = function(username){
+  this.username = username;
+  this.api = new API();
 
-  inputContainer = $('<div/>', {
+  this.elem = $('<div/>', {
     class: 'input-container'
   })
   .append(this.panel())[0];
-
-  return inputContainer;
 }
 
 MenuView.prototype.panel = function(){
@@ -25,7 +26,8 @@ MenuView.prototype.header = function(){
   return $('<div/>', {
     class: 'panel-heading',
     text: 'Drink Menu'
-  })[0];
+  })
+  .append(this.saveButton())[0];
 }
 
 MenuView.prototype.body = function(){
@@ -52,22 +54,20 @@ MenuView.prototype.tableHead = function(){
 }
 
 MenuView.prototype.tableBody = function(){
-  this._tableBody = $('<tbody/>')
+  return $('<tbody/>')
     .append($('<tr/>')
       .append(this.td(this.textBox))
       .append(this.td(this.textBox))
       .append(this.td(this.textBox))
       .append(this.td(this.textBox))
-      .append(this.td(this.addDrinkButton)));
-
-  return this._tableBody[0];
+      .append(this.td(this.addDrinkButton)))[0];
 }
 
 MenuView.prototype.addDrink = function(){
   var inputArr, row;
 
   row = $('<tr/>');
-  inputArr = this._tableBody.find('input');
+  inputArr = this._tableBody().find('input');
 
   for(var i = 0; i < inputArr.length; i++){
     row.append(this.td({
@@ -76,9 +76,13 @@ MenuView.prototype.addDrink = function(){
     inputArr[i].value = '';
   }
 
-  row.append(this.td(this.editButton, [row]));
+  row.append(this.td(this.rowButtons, [row]));
 
-  row.insertBefore(this._tableBody.children().last());
+  row.insertBefore(this._tableBody().children().last());
+}
+
+MenuView.prototype.deleteDrink = function(row){
+  row.remove();
 }
 
 MenuView.prototype.editRow = function(row) {
@@ -112,7 +116,7 @@ MenuView.prototype.doneEditing = function(row){
     }));
   }
 
-  newRow.push(this.td(this.editButton, [row]));
+  newRow.push(this.td(this.rowButtons, [row]));
 
   row.empty()
 
@@ -121,12 +125,53 @@ MenuView.prototype.doneEditing = function(row){
   });
 }
 
+MenuView.prototype.save = function(){
+  var drinks, rows;
+
+  rows = this._tableBody().find('tr');
+  drinks = [];
+
+  for(var i = 0; i < rows.length - 1; i++){
+    drinks.push(new Drink().fromRow(rows[i]))
+  }
+
+  this.api.replaceBar(new Bar(this.username, drinks));
+}
+
+MenuView.prototype.rowButtons = function(row){
+  return $('<div/>', { class: 'btn-group' })
+    .append(this.editButton(row))
+    .append(this.deleteButton(row));
+}
+
+MenuView.prototype.saveButton = function(){
+  return $('<button/>', {
+    class: 'btn btn-default save-btn',
+    click: function(){
+      this.save();
+    }.bind(this)
+  })
+  .append($('<div/>', {
+    class: 'glyphicon glyphicon-floppy-saved'
+  }));
+}
+
 MenuView.prototype.editButton = function(row){
   return $('<button/>', {
     class: 'btn btn-default',
     text: 'Edit',
     click: function(){
       this.editRow(row);
+    }.bind(this)
+  });
+}
+
+MenuView.prototype.deleteButton = function(row){
+  return $('<button/>', {
+    class: 'btn btn-default',
+    text: 'Delete',
+    click: function(){
+      this.deleteDrink(row);
     }.bind(this)
   });
 }
@@ -164,6 +209,8 @@ MenuView.prototype.td = function(child, args){
     return $('<td/>').append(child.apply(this, args));
   } else if(typeof child == 'object'){
     return $('<td/>', child);
+  } else if(typeof child == 'string'){
+    return $('<td/>', { text : child });
   }
 }
 
@@ -174,6 +221,31 @@ MenuView.prototype.textBox = function(hint) {
   });
 }
 
+MenuView.prototype.addRowFromDrink = function(drink){
+    var row = $('<tr/>');
+
+    row.append(this.td(drink.name))
+      .append(this.td(drink.price))
+      .append(this.td(drink.percent_alc))
+      .append(this.td(drink.size))
+      .append(this.td(this.rowButtons, [row]));
+
+    row.insertBefore(this._tableBody().children().last());
+    return this;
+}
+
+MenuView.prototype.show = function(anchor){
+  (anchor || document.body).appendChild(this.elem);
+  return this;
+}
+
+MenuView.prototype._tableBody = function(){
+  return $(this.elem).find('tbody');
+}
+
 window.onload = function(){
-  document.body.appendChild(new MenuView());
+  var view, d;
+
+  d = new Drink('Sex on the Beach', '$6.00', '25%', '12oz');
+  view = new MenuView('charlie').show().addRowFromDrink(d);
 }
