@@ -26,8 +26,9 @@ public class MainActivity extends Activity {
 		listBarsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						BarsListActivity.class));
+				new DataBase().getBars();
+//				startActivity(new Intent(getApplicationContext(),
+//						BarsListActivity.class));
 			}
 		});
 		
