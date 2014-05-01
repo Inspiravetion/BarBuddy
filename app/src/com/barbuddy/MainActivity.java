@@ -15,7 +15,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	private Button listBarsButton, drinksButton, mapButton, favoritesButton, settingsButton;
+	private Button listBarsButton, drinksButton, mapButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,6 @@ public class MainActivity extends Activity {
 		listBarsButton = (Button) findViewById(R.id.button1);
 		mapButton = (Button) findViewById(R.id.button2);
 		drinksButton = (Button) findViewById(R.id.button3);
-		favoritesButton = (Button) findViewById(R.id.button4);
-		settingsButton = (Button) findViewById(R.id.button5);
 		
 		listBarsButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -56,22 +54,6 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				startActivity(new Intent(getApplicationContext(),
 						DrinksListActivity.class));
-			}
-		});
-		
-		favoritesButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						FavoriteBarsActivity.class));
-			}
-		});
-		
-		settingsButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(),
-						SettingsActivity.class));
 			}
 		});
 		
