@@ -11,6 +11,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,32 +36,35 @@ public class DataBase {
 //Constructor(s)
 //------------------------------------------------------------------------------
 
-	public void DataBase(){
+	public DataBase(){
 		
 	}
 	
 //Main Methods
 //------------------------------------------------------------------------------
 
-	public void getBars(){
-		getDocument("/bars", "");
+	public void getBars(RequestCallback cb){
+		getDocument("/bars", null, cb);
+	}
+	
+	public void getBar(String username, RequestCallback cb){
+		HttpParams params = new BasicHttpParams();
+		params.setParameter("username", username);
+		getDocument("/bars", params, cb);
 	}
 	
 //Helper Methofd
 //------------------------------------------------------------------------------
 
-	private void getDocument(String collection, String query){
-		String url = collectionUrl() + collection + key + "&q=" + query; 
+	private void getDocument(String collection, HttpParams query, RequestCallback cb){
+		String url = collectionUrl() + collection + key;
+		HttpRequestBase request = new HttpGet(url);
 		
-		new RequestTask(new RequestCallback(){
-			
-			@Override
-			public void call(JSONObject json) throws JSONException{
-				Log.i("charlie", json.toString());
-				Log.i("charlie", json.get("drinks").toString());
-			}
-			
-		}).execute(new HttpGet(url));
+		if(query != null){
+			request.setParams(query);
+		}
+		
+		new RequestTask(cb).execute(request);
 	}
 	
 	private String collectionUrl(){
@@ -71,6 +76,10 @@ public class DataBase {
 	
 	interface RequestCallback {
 		abstract void call(JSONObject json) throws JSONException;
+	}
+	
+	interface BarCallback {
+		abstract void call(Bar bar);
 	}
 	
 	/*use like 

@@ -1,8 +1,13 @@
 package com.barbuddy;
 
+import org.json.JSONObject;
+
+import com.barbuddy.DataBase.RequestCallback;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +31,13 @@ public class MainActivity extends Activity {
 		listBarsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new DataBase().getBars();
+				new DataBase().getBars(new RequestCallback(){
+					
+					public void call(JSONObject json){
+						Log.i("charlie", json.toString());
+					}
+					
+				});
 //				startActivity(new Intent(getApplicationContext(),
 //						BarsListActivity.class));
 			}
