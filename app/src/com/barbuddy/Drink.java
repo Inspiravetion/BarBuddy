@@ -13,18 +13,44 @@ public class Drink {
 //------------------------------------------------------------------------------
 
 	public String name;
-	public int alcoholContent;
-	public int size;
-	public long price;
+	public String alcoholContent;
+	public String size;
+	public String price;
 	
 //Constructor(s)
 //------------------------------------------------------------------------------
 
-	public Drink(JSONObject json){
+	public Drink(JSONObject json)
+	{
 		name = json.optString("name");
-		alcoholContent = json.optInt("percent_alc");
-		size = json.optInt("size");
-		price = json.optLong("price");
+		alcoholContent = json.optString("percent_alc");
+		size = json.optString("size");
+		price = json.optString("price");
+	}
+	
+	public Drink(String name, String alcCont, String size, String price)
+	{
+		this.name = name;
+		alcoholContent = alcCont;
+		this.size = size;
+		this.price = price;
+	}
+	
+	/*@Override 
+	public String toString(){
+		return "{ name: " + name 
+				+ ", alcoholContent: " + alcoholContent 
+				+ ", size: " + size 
+				+ ", price: " + price + "}";
+	}*/
+	
+	@Override 
+	public String toString()
+	{
+		return "{ \"name\": " + "\"" + name + "\"" 
+				+ ", \"alcoholContent\": " + "\"" + alcoholContent + "\""
+				+ ", \"size\": " + "\"" + size + "\""
+				+ ", \"price\": " + "\"" + price + "\"" + "}";
 	}
 	
 //Main Methods

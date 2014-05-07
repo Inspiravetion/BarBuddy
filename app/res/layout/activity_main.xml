@@ -5,47 +5,25 @@
     tools:context=".MainActivity" >
     
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:text="@string/listbars" />
-    
-    <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="@string/mapbars" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:text="@string/mapbars" />
+    
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button2"
+        android:text="@string/listbars" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button2"
         android:text="@string/listdrinks" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
-        android:text="@string/favoritebars" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="@string/settings" />
 
 </RelativeLayout>

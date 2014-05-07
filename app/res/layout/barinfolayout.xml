@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+        android:background="@color/Black" >
+    	
+        <ImageView
+            android:id="@+id/barlogo"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="0.5"
+        	android:layout_gravity="center"
+        	android:contentDescription="@string/barlogo"
+        	android:src="@drawable/ic_launcher" />
+        
+        <LinearLayout 
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="0.5"
+    		android:orientation="vertical" >
+        
+        	<TextView
+        		android:id="@+id/bar1name"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:background="@color/Black"
+        		android:textColor="@color/Gold"
+        		android:paddingLeft="10dp"
+        		android:text="@string/barname" />
+        	
+        	<TextView
+        		android:id="@+id/bar1phone"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:background="@color/Black"
+        		android:textColor="@color/Gold"
+        		android:paddingLeft="10dp"
+        		android:text="@string/barphone" />
+        	
+        	<TextView
+        		android:id="@+id/bar1address"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:background="@color/Black"
+        		android:textColor="@color/Gold"
+        		android:paddingLeft="10dp"
+        		android:text="@string/baraddress" />
+        	
+        	<TextView
+        		android:id="@+id/bar1website"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:background="@color/Black"
+        		android:textColor="@color/Gold"
+        		android:paddingLeft="10dp"
+        		android:text="@string/barwebsite" />
+        
+        </LinearLayout> 
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:background="@color/Black">
+        
+        <TextView
+        	android:id="@+id/sortby"
+        	android:layout_width="0dp"
+        	android:layout_height="match_parent"
+        	android:layout_weight="1"
+        	android:textAlignment="center"
+        	android:gravity="center"
+        	android:background="@color/Black"
+        	android:textColor="@color/White"
+        	android:textAppearance="?android:attr/textAppearanceLarge"
+        	android:text="@string/drink_prompt" />
+        
+        <Spinner
+    		android:id="@+id/spinner1"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	
+        	android:textAppearance="?android:attr/textAppearanceLarge"
+        	android:prompt="@string/drink_prompt" />
+        
+    </LinearLayout>
+    
+	<ScrollView 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:background="@color/Black" >
+        
+	    <TableLayout
+    	    android:id="@+id/bars_table"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:stretchColumns="1" >
+        	
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink1"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink2"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink3"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink4"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink5"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink6"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink7"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink8"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink9"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink10"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink11"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink12"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink13"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink14"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+    	    <TableRow >
+    	        <TextView
+        			android:id="@+id/drink15"
+        			android:layout_width="0dp"
+        			android:layout_height="wrap_content"
+        			android:layout_weight="1"
+        			android:layout_marginTop="5dp"
+        			android:layout_marginBottom="5dp"
+        			android:padding="10dp"
+        			android:textColor="@color/Black"
+        			android:background="@color/Gold"
+        			android:textAppearance="?android:attr/textAppearanceLarge"
+        			android:text="@string/randomdrink" />
+    	    </TableRow>
+        
+    	</TableLayout>
+    	
+	</ScrollView> 
+    
+</LinearLayout>

@@ -1,16 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/Gold" >
+        
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:background="@color/Gold">
+    	
+        <ImageView 
+        	android:layout_width="0dp"
+        	android:layout_weight="0.5"
+    		android:layout_height="match_parent"
+    		android:layout_gravity="center"
+            android:src="@drawable/ic_launcher"
+            android:contentDescription="@string/barlogo" />
+        <LinearLayout 
+        	android:layout_width="0dp"
+        	android:layout_weight="0.5"
+    		android:layout_height="wrap_content"
+    		android:orientation="vertical"
+    		android:background="@color/Gold" >
+    		
+            <TextView
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="left"
+        		android:textStyle="bold"
+        		android:paddingLeft="8dp"
+        		android:textColor="@color/Black"
+        		android:text="@string/barname" />
+            <TextView
+                android:id="@+id/editbarname"
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:textStyle="bold"
+        		android:textColor="@color/Black" />
+            <TextView
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="left"
+        		android:textStyle="bold"
+        		android:paddingLeft="8dp"
+        		android:textColor="@color/Black"
+        		android:text="@string/barphone" />
+            <TextView
+                android:id="@+id/editbarphone"
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:textStyle="bold"
+        		android:autoLink="all"
+        		android:textColor="@color/Black" />
+            <TextView
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="left"
+        		android:textStyle="bold"
+        		android:paddingLeft="8dp"
+        		android:textColor="@color/Black"
+        		android:text="@string/barwebsite" />
+            <TextView
+                android:id="@+id/editbarwebsite"
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:textStyle="bold"
+        		android:autoLink="all"
+        		android:textColor="@color/Black" />
+            <TextView
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="left"
+        		android:textStyle="bold"
+        		android:paddingLeft="8dp"
+        		android:textColor="@color/Black"
+        		android:text="@string/baraddress" />
+            <TextView
+                android:id="@+id/editbaraddress"
+        		android:layout_width="match_parent"
+    			android:layout_height="wrap_content"
+        		android:gravity="center"
+        		android:autoLink="map"
+        		android:textStyle="bold"
+        		android:textColor="@color/Black" />
+            
+    	</LinearLayout>
+    	
+    </LinearLayout>
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal"
+    	android:background="@color/Black">
+        
+        <TextView
+        	android:id="@+id/sortby"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+    		android:padding="8dp"
+        	android:gravity="center"
+        	android:textAppearance="?android:attr/textAppearanceLarge"
+        	android:text="@string/drink_prompt" />
+        
+        <Spinner
+    		android:id="@+id/spinner1"
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:entries="@array/sort_drinks_by"
+        	android:prompt="@string/drink_prompt" />
+        
+    </LinearLayout>
+    
+    <ScrollView 
+    	android:id="@+id/drinks_scrollview"
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+        android:background="@color/Gold" >
+        
+        <LinearLayout
+            android:id="@+id/drinks_table"
+        	android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:orientation="vertical"
+    		android:background="@color/Gold">
+            
+        </LinearLayout>
+    
+	</ScrollView>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/listdrinks"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-</RelativeLayout>
+</LinearLayout>

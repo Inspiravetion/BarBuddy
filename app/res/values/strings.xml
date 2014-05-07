@@ -5,8 +5,34 @@
     <string name="action_settings">Settings</string>
     <string name="listbars">List All Bars</string>
     <string name="mapbars">Map of All Bars</string>
+    <string name="barinfo">Bar Info</string>
+    <string name="drink_prompt">Sort Drinks By:</string>
+    <string name="randomdrink">Drink Name --------- $3.00</string>
+    <string name="randombar">Bar Name --------- 3.2 miles</string>
+    <string name="favorite">Favorite Button!</string>
     <string name="listdrinks">Tonight\'s Drink Specials</string>
     <string name="favoritebars">Favorite Bars</string>
     <string name="settings">Settings</string>
+    <string name="barlogo">The Bar\'s Logo</string>
+    <string name="barname">Name: </string>
+    <string name="barphone">Phone: </string>
+    <string name="barwebsite">Website: </string>
+    <string name="baraddress">Address: </string>
+    
+	<string name="bar_prompt">Sort Bars By:</string>
+ 
+    <string-array name="sort_bars_by">
+        <item>Name</item>
+        <item>Distance</item>
+        <item>Favorites</item>
+    </string-array>
+    
+    <string name="drink_prompt">Sort Drinks By:</string>
+ 
+    <string-array name="sort_drinks_by">
+        <item>Price</item>
+        <item>% Alc</item>
+        <item>Value</item>
+    </string-array>
 
 </resources>
